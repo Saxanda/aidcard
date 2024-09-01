@@ -11,8 +11,8 @@ export class Modal {
 
 export class Visit {
     constructor(doctor, purpose, description, urgency, fullName) {
-        this.doctor = doctor;
-        this.purpose = purpose;
+        this.doctor = doctor; //
+        this.purpose = purpose; //мета візиту
         this.description = description;
         this.urgency = urgency;
         this.fullName = fullName;
@@ -22,7 +22,6 @@ export class Visit {
         // Логіка для відображення картки візиту
     }
 }
-
 export class VisitDentist extends Visit {
     constructor(doctor, purpose, description, urgency, fullName, lastVisitDate) {
         super(doctor, purpose, description, urgency, fullName);
@@ -34,8 +33,8 @@ export class VisitCardiologist extends Visit {
     constructor(doctor, purpose, description, urgency, fullName, bloodPressure, bmi, heartDiseases, age) {
         super(doctor, purpose, description, urgency, fullName);
         this.bloodPressure = bloodPressure;
-        this.bmi = bmi;
-        this.heartDiseases = heartDiseases;
+        this.bmi = bmi; //Індекс маси тіла
+        this.heartDiseases = heartDiseases; //перенесені захворювання серцево-судинної системи
         this.age = age;
     }
 }
