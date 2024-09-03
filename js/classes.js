@@ -1,14 +1,27 @@
 
 export class Modal {
+    constructor(modalElementId) {
+        this.modalElement = document.getElementById(modalElementId);
+    }
+
     show() {
-        // Логіка для відображення модального вікна
+        // Модальне вікно - відтворення
+        if (this.modalElement) {
+            this.modalElement.style.display = 'flex';
+        } else {
+            console.error('Modal element not found!');
+        }
     }
 
     hide() {
-        // Логіка для приховування модального вікна
+        // Модальне вікно - сховати
+        if (this.modalElement) {
+            this.modalElement.style.display = 'none';
+        } else {
+            console.error('Modal element not found!');
+        }
     }
 }
-
 export class Visit {
     constructor(doctor, purpose, description, urgency, fullName) {
         this.doctor = doctor; //
