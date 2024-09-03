@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.setAttribute('hidden', '');
     }
 
-
     authButton.addEventListener('click', () => {
         // Логіка авторизації
         showPreloader();
@@ -22,8 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         authButton.textContent = 'Створити візит';
         hidePreloader();
     });
-
-
 
     authButton.addEventListener('click', () => {
         const modal = new Modal();
