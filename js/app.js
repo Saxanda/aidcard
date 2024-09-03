@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const preloader = document.getElementById('preloader');
     const visitBoard = document.getElementById('visitBoard');
-
+    const modal = new Modal('modal');
     function showPreloader() {
         preloader.removeAttribute('hidden');
     }
@@ -38,6 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.show();
     });
 
+    // Показати модальне вікно
+    // modal.show();
+
+    // Додати обробник події для закриття
+    document.querySelector('.close').addEventListener('click', () => {
+        modal.hide();
+    });
+
+    // Додаткова логіка з модальним вікном
+    document.getElementById('authButton').addEventListener('click', () => {
+        modal.show();
+    });
     // Функції для фільтрації та роботи з картками будуть тут
 
     // Завантаження карток після авторизації
