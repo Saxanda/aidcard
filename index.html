@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visit Management System</title>
+
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/modals.css">
     <link rel="stylesheet" href="./css/preload.css">
+
 </head>
 <body>
 <header>
@@ -14,6 +17,7 @@
     </div>
     <button id="authButton" class="button">Вхід</button>
 </header>
+
 <section id="filters">
     <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
     <select id="statusFilter">
@@ -41,6 +45,13 @@
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
+    </div>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Тут контент модального вікна.</p>
     </div>
 </div>
 
