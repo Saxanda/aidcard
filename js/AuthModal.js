@@ -62,8 +62,8 @@ export class AuthModal extends Modal {
     handleLogin(event) {
         event.preventDefault();
 
-        const email = this.div.querySelector('#email');
-        const password = this.div.querySelector('#password');
+        const email = this.div.querySelector('#email').value;
+        const password = this.div.querySelector('#password').value;
 
         fetch("https://ajax.test-danit.com/api/v2/cards/login", {
             method: "POST",
@@ -73,10 +73,7 @@ export class AuthModal extends Modal {
             body: JSON.stringify({email, password}),
         })
             .then(response => {
-                if (response.status === 500) {
-                    alert('Internal server error');
-                    throw new Error('Internal server error');
-                } else if (response.status !== 200) {
+                if (response.status !== 200) {
                     alert('Wrong e-mail or password');
                     throw new Error('Invalid credentials');
                 }
