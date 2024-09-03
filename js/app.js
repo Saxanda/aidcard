@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authButton = document.getElementById('authButton');
     const preloader = document.getElementById('preloader');
     const visitBoard = document.getElementById('visitBoard');
-    const modal = new Modal('myModal');
+    const modal = new Modal('modal');
     function showPreloader() {
         preloader.removeAttribute('hidden');
     }
