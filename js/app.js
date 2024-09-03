@@ -1,10 +1,16 @@
 // app.js
-import { Modal, Visit, VisitDentist, VisitCardiologist, VisitTherapist } from './classes.js';
+import {Modal, Visit, VisitDentist, VisitCardiologist, VisitTherapist} from './classes.js';
+import {AuthModal} from './AuthModal.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const authButton = document.getElementById('authButton');
+    const createVisitButton = document.getElementById('createVisitButton');
+    const logOutButton = document.getElementById('logOutButton');
+
     const preloader = document.getElementById('preloader');
     const visitBoard = document.getElementById('visitBoard');
+
     function showPreloader() {
         preloader.removeAttribute('hidden');
     }
@@ -14,17 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    authButton.addEventListener('click', () => {
-        // Логіка авторизації
+    authButton.addEventListener('click', async () => {
         showPreloader();
-        // Після успішної авторизації:
-        authButton.textContent = 'Створити візит';
-        hidePreloader();
+        try {
+            const authModalInstance = new AuthModal();
+            await authModalInstance.show();
+        } catch (error) {
+            console.error('Error rendering the authorization modal:', error);
+        } finally {
+            hidePreloader();
+        }
     });
 
 
-
-    authButton.addEventListener('click', () => {
+    createVisitButton.addEventListener('click', () => {
         const modal = new Modal();
         modal.show();
     });

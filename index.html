@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visit Management System</title>
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/preload.css">
 </head>
@@ -12,38 +13,54 @@
     <div class="logo">
         <img src="./img/logo.png" alt="Logo" class="logo-img">
     </div>
-    <button id="authButton" class="button">Вхід</button>
+
+    <nav class="header__nav">
+        <ul class="header__btns-list">
+            <li>
+                <button id="authButton" class="button">Вхід</button>
+            </li>
+            <li>
+                <button id="createVisitButton" class="button button--hidden">Створити візит</button>
+            </li>
+            <li>
+                <button id="logOutButton" class="button button--hidden">Вихід</button>
+            </li>
+        </ul>
+    </nav>
+
 </header>
 
-<section id="filters">
-    <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
-    <select id="statusFilter">
-        <option value="all">Всі</option>
-        <option value="open">Open</option>
-        <option value="done">Done</option>
-    </select>
-    <select id="urgencyFilter">
-        <option value="all">Всі</option>
-        <option value="high">High</option>
-        <option value="normal">Normal</option>
-        <option value="low">Low</option>
-    </select>
-</section>
+<main class="main main--hidden">
+    <section id="filters">
+        <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
+        <select id="statusFilter">
+            <option value="all">Всі</option>
+            <option value="open">Open</option>
+            <option value="done">Done</option>
+        </select>
+        <select id="urgencyFilter">
+            <option value="all">Всі</option>
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+        </select>
+    </section>
 
-<section id="visitBoard">
-    <p>No items have been added</p>
-</section>
+    <section id="visitBoard">
+        <p>No items have been added</p>
+    </section>
 
-<div id="preloader" hidden>
-    <!-- Анімація завантаження -->
-    <div class="loading">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+    <div id="preloader" hidden>
+        <!-- Анімація завантаження -->
+        <div class="loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
-</div>
+</main>
 
 <script src="./js/app.js" type="module"></script>
 </body>
