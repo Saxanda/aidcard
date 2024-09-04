@@ -1,7 +1,7 @@
 // app.js
 import {Modal, Visit, VisitDentist, VisitCardiologist, VisitTherapist} from './classes.js';
 import {AuthModal} from './AuthModal.js';
-
+import { setupFilters } from './filter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const authButton = document.getElementById('authButton');
@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const preloader = document.getElementById('preloader');
     const visitBoard = document.getElementById('visitBoard');
+
+    let currentCardId = null; //
+    let visits = []; // Змінна для зберігання візитів
 
     function showPreloader() {
         preloader.removeAttribute('hidden');
@@ -32,6 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Функція для відображення карток
+    function renderVisits(filteredVisits) {
+        visitBoard.innerHTML = ''; // Очищуємо старий список
+        if (filteredVisits.length === 0) {
+            visitBoard.innerHTML = '<p>No visits found.</p>';
+        } else {
+            filteredVisits.forEach(cardData => {
+                createCardOnBoard(cardData);
+            });
+        }
+    }
 
     createVisitButton.addEventListener('click', () => {
         const modal = new Modal();
@@ -43,4 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Завантаження карток після авторизації
     // Наприклад:
     // fetchCards();
+
 });
