@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const preloader = document.getElementById('preloader');
     const visitBoard = document.getElementById('visitBoard');
-    const modal = new Modal('modalId');
+    const modal = new Modal('modal');
     const token = '4ad26a78-dd59-4adb-8346-251c76da7daf';
     let currentCardId = null; 
 
@@ -21,11 +21,35 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.setAttribute('hidden', '');
     }
 
+    async function loadCards() {
+        showPreloader();
+        visitBoard.innerHTML = '';
+        try {
+            const response = await fetch("https://ajax.test-danit.com/api/v2/cards", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const cards = await response.json();
+    
+            cards.forEach(cardData => {
+                createCardOnBoard(cardData);
+            });
+        } catch (error) {
+            console.error('Error loading cards:', error);
+        } finally {
+            hidePreloader();
+        }
+    }
+    
+
     authButton.addEventListener('click', async () => {
         showPreloader();
         try {
             const authModalInstance = new AuthModal();
             await authModalInstance.show();
+            await loadCards();  
         } catch (error) {
             console.error('Error rendering the authorization modal:', error);
         } finally {
@@ -34,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     createVisitButton.addEventListener('click', () => {
-        const modal = new Modal();
         modal.show();
     });
 
@@ -315,4 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    loadCards(); // Завантаження карток при старті сторінки
 });
+
