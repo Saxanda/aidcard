@@ -56,6 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Завантаження карток після авторизації
     // Наприклад:
-    // fetchCards();
+    loadCards();
 
 });
