@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.header__btns-list {
+    display: flex;
+    gap: 10px;
+}
+
+.button--hidden,
+.main--hidden {
+    display: none;
+}
+
+.logo-img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+}
+
+#filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#visitBoard {
+    padding: 10px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #222;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: loading 0.6s infinite alternate;
+}
+
+@keyframes loading {
+    to {
+        opacity: 0.3;
+        transform: translateY(-20px);
+    }
+}
+
+
+.card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.card button {
+    margin-right: 5px;
+}
+
+.card .show-more, .card .edit, .card .delete {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card .delete {
+    background: #dc3545;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

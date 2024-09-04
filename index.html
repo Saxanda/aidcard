@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Management System</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/preload.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="./img/logo.png" alt="Logo" class="logo-img">
+    </div>
+
+    <nav class="header__nav">
+        <ul class="header__btns-list">
+            <li>
+                <button id="authButton" class="button">Вхід</button>
+            </li>
+            <li>
+                <button id="createVisitButton" class="button button--hidden">Створити візит</button>
+            </li>
+            <li>
+                <button id="logOutButton" class="button button--hidden">Вихід</button>
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+<main class="main main--hidden">
+    <section id="filters">
+        <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
+        <select id="statusFilter">
+            <option value="all">Всі</option>
+            <option value="open">Open</option>
+            <option value="done">Done</option>
+        </select>
+        <select id="urgencyFilter">
+            <option value="all">Всі</option>
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+        </select>
+    </section>
+
+    <section id="visitBoard">
+        <p>No items have been added</p>
+    </section>
+
+    <div id="preloader" hidden>
+        <!-- Анімація завантаження -->
+        <div class="loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div id="modalId" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Створити візит</h2>
+            <form id="visitForm">
+                <label for="doctor">Лікар:</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="" disabled selected>Оберіть лікаря</option>
+                    <option value="cardiologist">Кардіолог</option>
+                    <option value="dentist">Стоматолог</option>
+                    <option value="therapist">Терапевт</option>
+                </select>
+    
+                <div id="commonFields">
+                    <label for="purpose">Мета візиту:</label>
+                    <input type="text" id="purpose" name="purpose" required>
+    
+                    <label for="description">Опис візиту:</label>
+                    <textarea id="description" name="description" required></textarea>
+    
+                    <label for="urgency">Терміновість:</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="normal">Звичайна</option>
+                        <option value="high">Пріоритетна</option>
+                        <option value="emergency">Невідкладна</option>
+                    </select>
+    
+                    <label for="fullName">ПІБ:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+    
+                <div id="specificFields"></div>
+    
+                <button type="submit">Створити</button>
+            </form>
+        </div>
+    </div>
+    
+</main>
+
+<script src="./js/app.js" type="module"></script>
+</body>
+</html>
