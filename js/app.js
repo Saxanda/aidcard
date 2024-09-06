@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
             cards.forEach(cardData => {
                 createCardOnBoard(cardData);
-            });
+            });     
         } catch (error) {
             console.error('Error loading cards:', error);
         } finally {
@@ -49,13 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const authModalInstance = new AuthModal();
             await authModalInstance.show();
-            await loadCards();  
         } catch (error) {
             console.error('Error rendering the authorization modal:', error);
         } finally {
             hidePreloader();
         }
     });
+
+    logOutButton.addEventListener('click', () => {
+        document.querySelector('.main').classList.toggle('main--hidden');
+        const navButtons = document.querySelectorAll('#authButton, #signUpButton, #createVisitButton, #logOutButton');
+        navButtons.forEach(btn => btn.classList.toggle('button--hidden'));
+    })
 
     createVisitButton.addEventListener('click', () => {
         modal.show();

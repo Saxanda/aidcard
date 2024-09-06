@@ -10,28 +10,28 @@ export class AuthModal extends Modal {
     }
 
     loginTemplate() {
-        this.div.classList.add('login-modal');
+        this.div.classList.add('modal-container');
         this.div.innerHTML = `
-        <div class="login-modal__header">
-            <button class="header__close-btn">Close</button>
-        </div>
-        <h2 class="login-modal__title">Log in</h2>
-        <p class="login-modal__text">login here using your e-mail and password</p>
-        
-        <form class="login-modal__form">
-            <input type="email" id="email" placeholder="e-mail" required>
+        <div class="login-modal">
+            <div class="login-modal__header">
+                <button class="header__close-btn">X</button>
+            </div>
+            <h2 class="login-modal__title">Log in</h2>
+            <p class="login-modal__text">log in here using your e-mail and password</p>
             
-            <input type="password" name="password" id="password" placeholder="password" required>
-            
-            <button type="button" class="form__sign-btn">Sign up</button>
-            <button type="submit" class="form__submit-btn">Log in</button>
-            
-        </form>
+            <form class="login-modal__form">
+                <input type="email" id="email" placeholder="E-mail" required>
+                
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                
+                <button type="submit" class="form__submit-btn">Log in</button>  
+                <button type="button" class="form__sign-btn button--green-border">Sign up</button>    
+            </form>
+        </div>        
         `;
     }
 
     show() {
-        const emailInput = this.div.querySelector('#email');
         const closeButton = this.div.querySelector('.header__close-btn');
         const loginButton = this.div.querySelector('.form__submit-btn');
         const signUpButton = this.div.querySelector('.form__sign-btn');
@@ -42,15 +42,9 @@ export class AuthModal extends Modal {
             window.location.href = "https://ajax.test-danit.com/front-pages/cards-register.html";
         });
 
-        emailInput.addEventListener('input', (event) => {
-            if (!this.validateEmail(event.target.value)) {
-                alert('Enter a valid e-mail');
-            }
-        });
-
         loginButton.addEventListener('click', this.handleLogin);
 
-        document.body.appendChild(this.div);
+        document.body.insertBefore(this.div, document.querySelector('script'));
     }
 
     validateEmail(email) {
@@ -64,6 +58,11 @@ export class AuthModal extends Modal {
 
         const email = this.div.querySelector('#email').value;
         const password = this.div.querySelector('#password').value;
+
+        if(!this.validateEmail(email)){
+            alert('Enter a valid e-mail');
+            return;
+        }
 
         fetch("https://ajax.test-danit.com/api/v2/cards/login", {
             method: "POST",
