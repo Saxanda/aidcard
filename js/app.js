@@ -344,6 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    loadCards(); // Завантаження карток при старті сторінки
+    fetchCrads()
 });
 

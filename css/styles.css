@@ -213,6 +213,21 @@ button {
     color: #252537;
 }
 
+.visitboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+}
+
+
+.header__close-btn {
+    margin-bottom: 10px;
+}
+
+.login-modal {
+    margin: 20px;
+}
+
 .button--green {
     background-color: #B8F2E6;
 }
@@ -229,16 +244,6 @@ button {
 .logo-img {
     height: 40px; /* Adjust the height as needed */
     width: auto;
-}
-
-#filters {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-#visitBoard {
-    padding: 10px;
 }
 
 .modal-container {
