@@ -1,4 +1,185 @@
-/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.header__btns-list {
+    display: flex;
+    gap: 10px;
+}
+
+.button--hidden,
+.main--hidden {
+    display: none;
+}
+
+.logo-img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+}
+
+#filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#visitBoard {
+    padding: 10px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #222;
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: loading 0.6s infinite alternate;
+}
+
+@keyframes loading {
+    to {
+        opacity: 0.3;
+        transform: translateY(-20px);
+    }
+}
+
+
+.card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.card button {
+    margin-right: 5px;
+}
+
+.card .show-more, .card .edit, .card .delete {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card .delete {
+    background: #dc3545;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+p {
+    padding: 10px 5px;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Вищий рівень, щоб бути поверх інших елементів */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Додана тінь */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+.close:hover {
+    color: #007bff; /* Зміна кольору при наведенні */
+}
+
+h2 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -25,13 +206,21 @@ button {
     height: 35px;
     border: none;
     border-radius: 5px;
-    background-color: #fff;
 }
 
 .nav-button {
     max-width: 100%;
     min-width: 40px;
     color: #252537;
+}
+
+
+.header__close-btn {
+    margin-bottom: 10px;
+}
+
+.login-modal {
+    margin: 20px;
 }
 
 .button--green {
@@ -50,16 +239,6 @@ button {
 .logo-img {
     height: 40px; /* Adjust the height as needed */
     width: auto;
-}
-
-#filters {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-#visitBoard {
-    padding: 10px;
 }
 
 .modal-container {
@@ -95,6 +274,7 @@ button {
     background-color: transparent;
     cursor: pointer;
     font-weight: bold;
+    background-color: #007bff;
 }
 
 .login-modal__title {
@@ -179,3 +359,4 @@ button {
         transform: translateY(-20px);
     }
 }
+
