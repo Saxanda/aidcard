@@ -213,12 +213,6 @@ button {
     color: #252537;
 }
 
-.visitboard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px; 
-}
-
 
 .header__close-btn {
     margin-bottom: 10px;

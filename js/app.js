@@ -1,6 +1,7 @@
 // app.js
 import {Modal, Visit, VisitDentist, VisitCardiologist, VisitTherapist} from './classes.js';
 import {AuthModal} from './AuthModal.js';
+import { setupFilters } from './filter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const authButton = document.getElementById('authButton');
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const visitBoard = document.getElementById('visitBoard');
     const modal = new Modal('modal');
     const token = '4ad26a78-dd59-4adb-8346-251c76da7daf';
-    let currentCardId = null; 
+    let currentCardId = null;
 
     function showPreloader() {
         preloader.removeAttribute('hidden');
@@ -35,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
             cards.forEach(cardData => {
                 createCardOnBoard(cardData);
-            });     
+            });
+            
+            setupFilters();
+            
         } catch (error) {
             console.error('Error loading cards:', error);
         } finally {
@@ -43,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-
     authButton.addEventListener('click', async () => {
         showPreloader();
         try {
@@ -56,11 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
     logOutButton.addEventListener('click', () => {
         document.querySelector('.main').classList.toggle('main--hidden');
         const navButtons = document.querySelectorAll('#authButton, #signUpButton, #createVisitButton, #logOutButton');
         navButtons.forEach(btn => btn.classList.toggle('button--hidden'));
-    })
+    });
 
     createVisitButton.addEventListener('click', () => {
         modal.show();
@@ -106,11 +110,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Валідація даних форми перед відправкою
     document.getElementById('visitForm').addEventListener('submit', (event) => {
         event.preventDefault();
 
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
+
+        // Валідація тиску (повинно бути числом і перебувати в діапазоні від 50 до 160)
+        if (data.doctor === 'cardiologist') {
+            const bloodPressure = parseInt(data.bloodPressure, 10);
+            if (isNaN(bloodPressure) || bloodPressure < 50 || bloodPressure > 160) {
+                alert('Введіть коректний тиск (від 50 до 160).');
+                return;
+            }
+
+            const bmi = parseFloat(data.bmi);
+            if (isNaN(bmi) || bmi <= 0) {
+                alert('Введіть коректний ІМТ.');
+                return;
+            }
+        }
+
+        // Валідація віку (повинно бути числом більше 0)
+        if (data.age && (isNaN(data.age) || parseInt(data.age, 10) <= 0)) {
+            alert('Введіть коректний вік.');
+            return;
+        }
 
         let visit;
         switch (data.doctor) {
@@ -158,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (currentCardId) {
-
             fetch(`https://ajax.test-danit.com/api/v2/cards/${currentCardId}`, {
                 method: 'PUT',
                 headers: {
@@ -175,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error:', error));
         } else {
-
             fetch("https://ajax.test-danit.com/api/v2/cards", {
                 method: 'POST',
                 headers: {
@@ -198,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.classList.add('card');
         card.dataset.id = cardData.id;
+        card.setAttribute('draggable', 'true');  // Додаємо можливість перетягування
 
         const additionalInfo = `
             <div class="more-info hidden">
@@ -286,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .catch(error => console.error('Error:', error));
                 }
             } else if (event.target.classList.contains('edit')) {
-
                 fetch(`https://ajax.test-danit.com/api/v2/cards/${cardId}`, {
                     method: 'GET',
                     headers: {
@@ -295,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .then(response => response.json())
                 .then(cardData => {
-
                     document.getElementById('doctor').value = cardData.doctor;
                     document.getElementById('purpose').value = cardData.purpose;
                     document.getElementById('description').value = cardData.description;
@@ -331,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         `;
                     }
 
-
                     modal.show();
                     currentCardId = cardId;
                 })
@@ -344,6 +366,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    fetchCrads()
-});
 
+    visitBoard.addEventListener('dragstart', (event) => {
+        if (event.target.classList.contains('card')) {
+            event.target.classList.add('dragging');
+        }
+    });
+
+    visitBoard.addEventListener('dragend', (event) => {
+        if (event.target.classList.contains('card')) {
+            event.target.classList.remove('dragging');
+        }
+    });
+
+    visitBoard.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        const afterElement = getDragAfterElement(visitBoard, event.clientY);
+        const draggingCard = document.querySelector('.dragging');
+        if (afterElement == null) {
+            visitBoard.appendChild(draggingCard);
+        } else {
+            visitBoard.insertBefore(draggingCard, afterElement);
+        }
+    });
+
+    function getDragAfterElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    loadCards(); // Завантаження карток при старті сторінки
+});
