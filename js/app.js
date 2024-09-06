@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.setAttribute('hidden', '');
     }
 
-
     authButton.addEventListener('click', async () => {
         showPreloader();
         try {
@@ -32,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    logOutButton.addEventListener('click', () => {
+        document.querySelector('.main').classList.toggle('main--hidden');
+        const navButtons = document.querySelectorAll('#authButton, #signUpButton, #createVisitButton, #logOutButton');
+        navButtons.forEach(btn => btn.classList.toggle('button--hidden'));
+    })
 
     createVisitButton.addEventListener('click', () => {
         const modal = new Modal();
