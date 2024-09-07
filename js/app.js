@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <textarea id="heartDiseases" name="heartDiseases" required></textarea>
 
                 <label for="age">Вік:</label>
-                <input type="number" id="age" name="age" required>
+                <input type="number" id="age" name="age" min="1" required>
             `;
         } else if (doctorType === 'dentist') {
             specificFields.innerHTML = `
@@ -247,9 +247,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3>${cardData.fullName}</h3>
             <p>${cardData.doctor}</p>
             ${additionalInfo}
-            <button class="show-more">Показати більше</button>
-            <button class="edit">Редагувати</button>
-            <button class="delete">Видалити</button>
+            <nav class="card-nav">
+                <button class="show-more button--blue">Показати більше</button>
+                <button class="edit button--blue-border">Редагувати</button>
+                <button class="delete button--red">Видалити</button>
+            </nav>            
         `;
         visitBoard.appendChild(card);
     }
@@ -280,9 +282,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${cardData.fullName}</h3>
                 <p>${cardData.doctor}</p>
                 ${additionalInfo}
-                <button class="show-more">Показати більше</button>
-                <button class="edit">Редагувати</button>
-                <button class="delete">Видалити</button>
+                <nav class="card-nav">
+                    <button class="show-more button--blue">Показати більше</button>
+                    <button class="edit button--blue-border">Редагувати</button>
+                    <button class="delete button--red">Видалити</button>
+                </nav>  
             `;
         }
     }

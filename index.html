@@ -33,74 +33,80 @@
 </header>
 
 <main class="main main--hidden">
-    <section id="filters">
-        <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
-        <select id="doctorFilter">
-            <option value="all">Всі лікарі</option>
-            <option value="dentist">Стоматолог</option>
-            <option value="cardiologist">Кардіолог</option>
-            <option value="therapist">Терапевт</option>
-        </select>
-        <select id="urgencyFilter">
-            <option value="all">Всі</option>
-            <option value="high">Пріоритетна</option>
-            <option value="normal">Звичайна</option>
-            <option value="emergency">Невідкладна</option>
-        </select>
-    </section>
+    <div class="container">
+        <section id="filters">
+            <input type="text" id="search" placeholder="Пошук за заголовком/вмістом">
+            <select id="doctorFilter">
+                <option value="all">Всі лікарі</option>
+                <option value="dentist">Стоматолог</option>
+                <option value="cardiologist">Кардіолог</option>
+                <option value="therapist">Терапевт</option>
+            </select>
+            <select id="urgencyFilter">
+                <option value="all">Всі</option>
+                <option value="high">Пріоритетна</option>
+                <option value="normal">Звичайна</option>
+                <option value="emergency">Невідкладна</option>
+            </select>
+        </section>
 
-    <section id="visitBoard" class="visitboard">
-        <p id="NoItems">No items have been added</p>
-    </section>
+        <section id="visitBoard" class="visitboard">
+            <p id="NoItems">No items have been added</p>
+        </section>
 
-    <div id="preloader" hidden>
-        <!-- Анімація завантаження -->
-        <div class="loading">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <div id="preloader" hidden>
+            <!-- Анімація завантаження -->
+            <div class="loading">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
         </div>
-    </div>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Створити візит</h2>
-            <form id="visitForm">
-                <label for="doctor">Лікар:</label>
-                <select id="doctor" name="doctor" required>
-                    <option value="" disabled selected>Оберіть лікаря</option>
-                    <option value="cardiologist">Кардіолог</option>
-                    <option value="dentist">Стоматолог</option>
-                    <option value="therapist">Терапевт</option>
-                </select>
-    
-                <div id="commonFields">
-                    <label for="purpose">Мета візиту:</label>
-                    <input type="text" id="purpose" name="purpose" required>
-    
-                    <label for="description">Опис візиту:</label>
-                    <textarea id="description" name="description" required></textarea>
-    
-                    <label for="urgency">Терміновість:</label>
-                    <select id="urgency" name="urgency" required>
-                        <option value="normal">Звичайна</option>
-                        <option value="high">Пріоритетна</option>
-                        <option value="emergency">Невідкладна</option>
-                    </select>
-    
-                    <label for="fullName">ПІБ:</label>
-                    <input type="text" id="fullName" name="fullName" required>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="create-visit__header">
+                    <button class="close">&times;</button>
+                    <h2 class="create-visit__title">Створити візит</h2>
                 </div>
-    
-                <div id="specificFields"></div>
-    
-                <button type="submit">Створити</button>
-            </form>
+
+                <form id="visitForm">
+                    <label class="form-label" for="doctor">Лікар:</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="" disabled selected>Оберіть лікаря</option>
+                        <option value="cardiologist">Кардіолог</option>
+                        <option value="dentist">Стоматолог</option>
+                        <option value="therapist">Терапевт</option>
+                    </select>
+
+                    <div id="commonFields">
+                        <label class="form-label" for="purpose">Мета візиту:</label>
+                        <input type="text" id="purpose" name="purpose" required>
+
+                        <label class="form-label" for="description">Опис візиту:</label>
+                        <textarea id="description" name="description" required></textarea>
+
+                        <label class="form-label" for="urgency">Терміновість:</label>
+                        <select id="urgency" name="urgency" required>
+                            <option value="normal">Звичайна</option>
+                            <option value="high">Пріоритетна</option>
+                            <option value="emergency">Невідкладна</option>
+                        </select>
+
+                        <label class="form-label" for="fullName">ПІБ:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div id="specificFields"></div>
+
+                    <button class="create-visit-btn button--blue-border" type="submit">Створити</button>
+                </form>
+            </div>
         </div>
     </div>
-    
+
 
 </main>
 
@@ -108,6 +114,3 @@
 </body>
 
 </html>
-
-</html>
-
