@@ -1,43 +1,15 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    background-image: url("../img/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
-
-.header__btns-list {
-    display: flex;
-    gap: 10px;
-}
-
-.button--hidden,
-.main--hidden {
-    display: none;
-}
-
-.logo-img {
-    height: 40px; /* Adjust the height as needed */
-    width: auto;
-}
-
-#filters {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-#visitBoard {
-    padding: 10px;
+.container {
+    max-width: 1200px;
+    margin: auto;
 }
 
 .loading {
@@ -64,33 +36,68 @@ header {
     }
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.header__btns-list {
+    display: flex;
+    gap: 10px;
+}
+
+.button--hidden,
+.main--hidden {
+    display: none;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+#filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 33px;
+    padding: 10px;
+}
+
+#visitBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
 
 .card {
-    border: 1px solid #ddd;
+    height: max-content;
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
     position: relative;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.9s;
 }
 
-.card button {
-    margin-right: 5px;
+.card:hover {
+    transform: scale(1.05);
+    border: 4px solid #B8F2E6;
 }
 
-.card .show-more, .card .edit, .card .delete {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
+.card-nav {
+    display: flex;
+    justify-content: space-between;
 }
 
-.card .delete {
-    background: #dc3545;
+.more-info {
+    margin-bottom: 10px;
 }
-
-
 
 .hidden {
     display: none;
@@ -102,32 +109,63 @@ p {
 
 /* Стилі для модального вікна */
 .modal {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000; /* Вищий рівень, щоб бути поверх інших елементів */
+    z-index: 1; /* Вищий рівень, щоб бути поверх інших елементів */
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
+    position: relative;
     width: 80%;
     max-width: 500px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Додана тінь */
+    max-height: 600px;
+    background: white;
+    padding: 0 20px 20px 20px;
+    border-radius: 5px;
+    overflow: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.create-visit__header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    align-self: end;
     cursor: pointer;
     font-size: 24px;
     color: #333;
@@ -137,11 +175,14 @@ p {
     color: #007bff; /* Зміна кольору при наведенні */
 }
 
-h2 {
-    margin-top: 0;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-form {
+#commonFields,
+#specificFields{
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -160,52 +201,27 @@ input, select, textarea {
 }
 
 textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
-
-.header__btns-list {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    min-height: 150px;
+    resize: none;
+    overflow-y: hidden;
 }
 
 button {
     height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
     border: none;
+    padding: 7px;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.9s;
+}
+
+button:hover {
+    transform: scale(1.05);
 }
 
 .nav-button {
@@ -214,9 +230,16 @@ button {
     color: #252537;
 }
 
-
 .header__close-btn {
+    margin-left: auto;
     margin-bottom: 10px;
+    background-color: transparent;
+    color: black;
+    transition: 0.9s;
+}
+
+.header__close-btn:hover {
+    transform: scale(1.2);
 }
 
 .login-modal {
@@ -227,18 +250,35 @@ button {
     background-color: #B8F2E6;
 }
 
+.button--green:hover {
+    background-color: #aaf5de;
+}
+
 .button--green-border {
     border: 2px solid #B8F2E6;
 }
 
-.button--hidden,
-.main--hidden {
-    display: none;
+.button--blue-border {
+    border: 2px solid #b8daf2;
 }
 
-.logo-img {
-    height: 40px; /* Adjust the height as needed */
-    width: auto;
+.button--blue-border:hover {
+    background-color: #b8caf2;
+    color: #fff;
+}
+
+.button--blue {
+    background-color: #b8caf2;
+    color: #fff;
+}
+
+.button--red {
+    border: 2px solid #f2b8ba;
+}
+
+.button--red:hover {
+    background-color: #f2b8ba;
+    color: #fff;
 }
 
 .modal-container {
@@ -263,18 +303,6 @@ button {
     background-image: linear-gradient(-225deg, #E3FDF5 50%, #e6fcff 50%);
 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.login-modal__header {
-    text-align: end;
-    margin-bottom: 30px;
-}
-
-.header__close-btn {
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: #007bff;
 }
 
 .login-modal__title {
@@ -332,31 +360,6 @@ button {
     }
     100% {
         transform: translateY(5px);
-    }
-}
-
-
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #222;
-}
-
-.dot {
-    width: 20px;
-    height: 20px;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: #fff;
-    animation: loading 0.6s infinite alternate;
-}
-
-@keyframes loading {
-    to {
-        opacity: 0.3;
-        transform: translateY(-20px);
     }
 }
 
